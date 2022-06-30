@@ -1,13 +1,14 @@
 import 'package:assignment_9/mock/mock_data.dart';
+import 'package:assignment_9/mock/model.dart';
 import 'package:flutter/material.dart';
 
 class DetailsScreen extends StatelessWidget {
   DetailsScreen({
     Key? key,
-    required this.index,
+    required this.citymodel,
   }) : super(key: key);
 
-  int index;
+  final DataModel citymodel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,8 +19,7 @@ class DetailsScreen extends StatelessWidget {
               Stack(
                 children: [
                   Container(
-                    child:
-                        Image.network(mockdata[index]["city_image"].toString()),
+                    child: Image.network(citymodel.cityimage),
                   ),
                   Positioned(
                     child: IconButton(
@@ -36,14 +36,14 @@ class DetailsScreen extends StatelessWidget {
               ),
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 40),
-                child: Text(mockdata[index]["city_name"].toString(),
+                child: Text(citymodel.cityname,
                     style: TextStyle(
                       fontSize: 18,
                     )),
               ),
               Container(
                 padding: EdgeInsets.all(10),
-                child: Text(mockdata[index]["description"].toString(),
+                child: Text(citymodel.description,
                     style: TextStyle(
                       fontSize: 16,
                     )),

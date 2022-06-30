@@ -1,12 +1,14 @@
 import 'package:assignment_9/mock/mock_data.dart';
+import 'package:assignment_9/mock/model.dart';
 import 'package:assignment_9/src/Kurdistan_Cities_Details_screen.dart';
 import 'package:flutter/material.dart';
 
 class KurdistanCities extends StatelessWidget {
-  const KurdistanCities({Key? key}) : super(key: key);
-
+  KurdistanCities({Key? key}) : super(key: key);
+  List<DataModel> _citymodel = [];
   @override
   Widget build(BuildContext context) {
+    _citymodel = mockdata.map((e) => DataModel.fromMap(e)).toList();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -35,11 +37,11 @@ class KurdistanCities extends StatelessWidget {
                             alignment: Alignment.center,
                             children: [
                               Container(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 height: 200,
                                 width: 300,
-                                child: Image.network(
-                                    mockdata[index]["city_image"].toString()),
+                                child:
+                                    Image.network(_citymodel[index].cityimage),
                               ),
                               Positioned(
                                 bottom: 0,
@@ -50,9 +52,8 @@ class KurdistanCities extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       color: Colors.grey[300],
                                       borderRadius: BorderRadius.circular(20)),
-                                  child: Text(
-                                      mockdata[index]["city_name"].toString(),
-                                      style: TextStyle(
+                                  child: Text(_citymodel[index].cityname,
+                                      style: const TextStyle(
                                         fontSize: 18,
                                       )),
                                 ),
@@ -62,7 +63,7 @@ class KurdistanCities extends StatelessWidget {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => DetailsScreen(
-                                      index: index,
+                                      citymodel: _citymodel[index],
                                     )));
                           },
                         );
