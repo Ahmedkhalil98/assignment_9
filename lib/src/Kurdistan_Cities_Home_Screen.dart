@@ -3,12 +3,23 @@ import 'package:assignment_9/mock/model.dart';
 import 'package:assignment_9/src/Kurdistan_Cities_Details_screen.dart';
 import 'package:flutter/material.dart';
 
-class KurdistanCities extends StatelessWidget {
-  KurdistanCities({Key? key}) : super(key: key);
+class KurdistanCities extends StatefulWidget {
+  const KurdistanCities({Key? key}) : super(key: key);
+
+  @override
+  State<KurdistanCities> createState() => _KurdistanCitiesState();
+}
+
+class _KurdistanCitiesState extends State<KurdistanCities> {
   List<DataModel> _citymodel = [];
+
   @override
   Widget build(BuildContext context) {
-    _citymodel = mockdata.map((e) => DataModel.fromMap(e)).toList();
+    _citymodel = mockdata.map(
+      (element) {
+        return DataModel.fromMap(element);
+      },
+    ).toList();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
